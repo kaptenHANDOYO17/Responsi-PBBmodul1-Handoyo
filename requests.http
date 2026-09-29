@@ -1,0 +1,88 @@
+### =====================================================
+### Koleksi request untuk ekstensi VS Code "REST Client"
+### (humao.rest-client). Klik "Send Request" di atas tiap request.
+### Ganti @baseUrl ke URL Vercel untuk menguji hasil deployment.
+### =====================================================
+
+@baseUrl = http://localhost:3000
+# @baseUrl = https://NAMA-PROJECT.vercel.app
+
+### Info API
+GET {{baseUrl}}/
+
+### Health check (API + database)
+GET {{baseUrl}}/health
+
+### Ambil semua data peminjaman
+GET {{baseUrl}}/loans
+
+### Filter: status Terlambat
+GET {{baseUrl}}/loans?status=Terlambat
+
+### Filter kombinasi + sorting + pagination
+GET {{baseUrl}}/loans?status=Dipinjam&member_name=budi&sort_by=due_date&order=asc&page=1&limit=5
+
+### Filter rentang tanggal pinjam
+GET {{baseUrl}}/loans?loan_date_from=2026-09-01&loan_date_to=2026-09-30
+
+### Detail peminjaman
+GET {{baseUrl}}/loans/1
+
+### Tambah peminjaman
+POST {{baseUrl}}/loans
+Content-Type: application/json
+
+{
+  "member_id": "AGT-006",
+  "member_name": "Handoyo",
+  "book_isbn": "978-0-596-51774-8",
+  "book_title": "JavaScript: The Good Parts",
+  "book_author": "Douglas Crockford",
+  "loan_date": "2026-09-29",
+  "due_date": "2026-10-13",
+  "notes": "Referensi praktikum PBB"
+}
+
+### Perbarui seluruh data (PUT)
+PUT {{baseUrl}}/loans/1
+Content-Type: application/json
+
+{
+  "member_id": "AGT-001",
+  "member_name": "Budi Santoso",
+  "book_isbn": "978-602-03-3295-6",
+  "book_title": "Laskar Pelangi (Edisi Revisi)",
+  "book_author": "Andrea Hirata",
+  "loan_date": "2026-09-26",
+  "due_date": "2026-10-17",
+  "notes": "Perpanjangan masa pinjam"
+}
+
+### Perbarui sebagian data (PATCH)
+PATCH {{baseUrl}}/loans/1
+Content-Type: application/json
+
+{
+  "due_date": "2026-10-20",
+  "notes": "Diperpanjang 3 hari"
+}
+
+### Catat pengembalian buku
+PATCH {{baseUrl}}/loans/2/return
+Content-Type: application/json
+
+{
+  "return_date": "2026-09-29"
+}
+
+### Hapus peminjaman
+DELETE {{baseUrl}}/loans/6
+
+### Contoh error validasi (400)
+POST {{baseUrl}}/loans
+Content-Type: application/json
+
+{
+  "member_name": "",
+  "due_date": "29-09-2026"
+}
