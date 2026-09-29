@@ -8,8 +8,7 @@ REST API sederhana untuk **layanan pencatatan peminjaman buku perpustakaan**, di
 ![Vercel](https://img.shields.io/badge/Deploy-Vercel-000000?logo=vercel&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-blue)
 
-> 🌐 **Base URL Deployment:** https://NAMA-PROJECT.vercel.app
-> <!-- GANTI link di atas dengan URL Vercel milikmu setelah deploy -->
+> 🌐 **Base URL Deployment:** https://responsi-pb-bmodul1-handoyo.vercel.app/
 
 ---
 
